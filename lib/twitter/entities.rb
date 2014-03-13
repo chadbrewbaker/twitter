@@ -11,7 +11,7 @@ module Twitter
 
     # @return [Boolean]
     def entities?
-      !@attrs[:entities].nil? && @attrs[:entities].any? { |_, array| array.any? }
+      !@attrs['entities'].nil? && @attrs['entities'].any? { |_, array| array.any? }
     end
     memoize :entities?
 
@@ -84,10 +84,10 @@ module Twitter
   private
 
     # @param klass [Class]
-    # @param key [Symbol]
+    # @param key [String, Symbol]
     def entities(klass, key)
-      if !@attrs[:entities].nil?
-        Array(@attrs[:entities][key.to_sym]).collect do |entity|
+      if !@attrs['entities'].nil?
+        Array(@attrs['entities'][key.to_s]).collect do |entity|
           klass.new(entity)
         end
       else
